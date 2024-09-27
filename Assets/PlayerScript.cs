@@ -26,10 +26,15 @@ public class PlayerScript : MonoBehaviour
             // transform.Translate(Vector2.left * Time.deltaTime * movementSpeed);
             rigidbody.velocity = new Vector2(-movementSpeed, rigidbody.velocity.y);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             // transform.Translate(Vector2.right * Time.deltaTime * movementSpeed);
             rigidbody.velocity = new Vector2(movementSpeed, rigidbody.velocity.y);
+        }
+        else
+        {
+            // Stop horizontal movement when no keys are pressed. Stops player from sliding around for no reason.
+            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
         }
         
         if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
